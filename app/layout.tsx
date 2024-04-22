@@ -1,8 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto, Open_Sans } from "next/font/google";
 import "./globals.scss";
+import Header from "./components/Header";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  subsets: ["cyrillic"],
+  weight: ["100", "300", "400", "500", "700", "900"],
+  style: ["italic", "normal"],
+  variable: "--font-roboto",
+});
+
+const openSans = Open_Sans({
+  subsets: ["cyrillic"],
+  weight: ["300", "400", "500", "700"],
+  style: ["italic", "normal"],
+  variable: "--font-open-sans",
+});
 
 export const metadata: Metadata = {
   title: "GitHub Profile",
@@ -15,8 +28,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="pt-BR">
+      <body className={`${openSans.variable} ${roboto.variable}`}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
