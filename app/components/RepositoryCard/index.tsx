@@ -1,11 +1,16 @@
+import { GithubReposType } from "@/app/types/GitHubReposType";
 import styles from "./styles.module.scss";
 
-export default function RepositoryCard() {
+interface IProps {
+    repo: GithubReposType;
+}
+
+export default function RepositoryCard({ repo }: IProps) {
     return (
         <div className={styles.container}>
-            <h3>Meu Projeto Novo</h3>
+            <h3>{repo.name}</h3>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, possimus.
+                {repo.description}
             </p>
         </div>
     );

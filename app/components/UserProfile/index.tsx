@@ -1,25 +1,30 @@
 import Image from "next/image";
 
-import ProfileImage from "../../assets/profile.png"
 import styles from "./styles.module.scss"
+import { GithubProfileType } from "@/app/types/GithubProfileType";
 
-export default function UserProfile() {
+interface IProps {
+    isMyProfile?: boolean;
+    profile: GithubProfileType
+}
+
+export default function UserProfile({ isMyProfile, profile }: IProps) {
     return (
         <div className={styles.container}>
-            <div className={styles["container-avatar"]}>
-                <Image src={ProfileImage} alt="avatar" width={249} height={256} />
-                <div>Meu Perfil</div>
+            <div className={styles["container--avatar"]}>
+                <Image src={profile.avatar_url} alt="avatar" width={249} height={256} />
+                {isMyProfile && <div>Meu Perfil</div>}
              </div>
 
-             <h1>Joel Vieira de Souza</h1>
-             <span>joelgxp</span>
+             <h1>{profile.name}</h1>
+             <span>{profile.location}</span>
              <p>
-             Developer: Android, VueJS, Quasar FrameWork, React JS, NodeJS, Javascript, PHP, Bootstrap, HTML5 e CSS3.
+             {profile.bio}
              </p>
 
              <div className={styles["items-container"]}>
-                <span>joelvieirasouza@gmail.com</span>
-                <span>joelsouza.com.br</span>
+                <span>{profile.email}</span>
+                <span>{profile.blog}</span>
              </div>
         </div>
     );
